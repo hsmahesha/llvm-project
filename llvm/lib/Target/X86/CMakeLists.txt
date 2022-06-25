@@ -33,6 +33,7 @@ set(sources
   X86CmovConversion.cpp
   X86DomainReassignment.cpp
   X86DiscriminateMemOps.cpp
+  X86CFCSS.cpp
   X86LowerTileCopy.cpp
   X86LowerAMXType.cpp
   X86PreAMXConfig.cpp

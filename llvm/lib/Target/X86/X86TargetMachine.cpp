@@ -79,6 +79,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeX86Target() {
   initializeX86CmovConverterPassPass(PR);
   initializeX86TileConfigPass(PR);
   initializeX86FastTileConfigPass(PR);
+  initializeX86CFCSSPass(PR);
   initializeX86LowerTileCopyPass(PR);
   initializeX86ExpandPseudoPass(PR);
   initializeX86ExecutionDomainFixPass(PR);
@@ -522,6 +523,7 @@ void X86PassConfig::addMachineSSAOptimization() {
 }
 
 void X86PassConfig::addPostRegAlloc() {
+  addPass(createX86CFCSSPass());
   addPass(createX86LowerTileCopyPass());
   addPass(createX86FloatingPointStackifierPass());
   // When -O0 is enabled, the Load Value Injection Hardening pass will fall back
