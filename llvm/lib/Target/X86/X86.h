@@ -14,6 +14,8 @@
 #ifndef LLVM_LIB_TARGET_X86_X86_H
 #define LLVM_LIB_TARGET_X86_X86_H
 
+#include "llvm/Pass.h"
+#include "llvm/PassRegistry.h"
 #include "llvm/Support/CodeGen.h"
 
 namespace llvm {
@@ -84,6 +86,9 @@ FunctionPass *createX86FastTileConfigPass();
 
 /// Return a pass that insert pseudo tile config instruction.
 FunctionPass *createX86PreTileConfigPass();
+
+/// Return a pass that implements cfcss algorithm.
+ModulePass *createX86CFCSSPass();
 
 /// Return a pass that lower the tile copy instruction.
 FunctionPass *createX86LowerTileCopyPass();
@@ -179,6 +184,7 @@ void initializeX86FastTileConfigPass(PassRegistry &);
 void initializeX86TileConfigPass(PassRegistry &);
 void initializeX86LowerAMXTypeLegacyPassPass(PassRegistry &);
 void initializeX86PreAMXConfigPassPass(PassRegistry &);
+void initializeX86CFCSSPass(PassRegistry &);
 void initializeX86LowerTileCopyPass(PassRegistry &);
 void initializeX86LowerAMXIntrinsicsLegacyPassPass(PassRegistry &);
 
